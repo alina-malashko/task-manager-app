@@ -1,0 +1,48 @@
+<div class="modal" id="editDatePopup">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Edit date</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <form
+        *ngIf="editDateForm && editedTask"
+        [formGroup]="editDateForm"
+        (ngSubmit)="submit()"
+      >
+        <div class="modal-body">
+            <div class="mb-3">
+              <label for="expiryDate" class="form-label">
+                To be done until:
+                <span class="text-danger">*</span>
+              </label>
+              <input
+                type="date"
+                class="form-control"
+                id="expiryDate"
+                formControlName="expiryDate"
+              >
+              <p
+                *ngIf="editDateForm.controls['expiryDate'].invalid"
+                class="text-danger"
+              >
+                Date should be in the future
+              </p>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+          <button
+            *ngIf="editDateForm"
+            type="submit"
+            class="btn btn-primary"
+            [disabled]="editDateForm.invalid"
+            data-bs-dismiss="modal"
+          >
+            Save
+          </button>
+        </div>
+    </form>
+    </div>
+  </div>
+</div>

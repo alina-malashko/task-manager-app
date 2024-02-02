@@ -1,0 +1,21 @@
+:host {
+  @media (max-width: 992px) {
+    height: 100vh;
+  }
+}
+
+.main {
+  @media (max-width: 992px) {
+    flex: 1 0 auto;
+  }
+  .table {
+    display: block;
+    height: calc(100vh / 100 * 60);
+    overflow: scroll;
+  }
+}
+aside {
+  @media (max-width: 992px) {
+    flex: 1 0 auto;
+  }
+}

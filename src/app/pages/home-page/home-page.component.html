@@ -1,0 +1,89 @@
+<div class="d-flex flex-lg-row-reverse flex-column w-100 h-100">
+  <div class="w-100 h-100 main">
+    <header class="p-3 mb-5 bg-primary text-white fw-bold fs-1 w-100">
+      <h1>Tasks manager app</h1>
+    </header>
+    <main class="w-100 px-3">
+      <button
+        type="button"
+        class="btn btn-primary mb-5 ms-3"
+        data-bs-toggle="modal"
+        data-bs-target="#addTaskPopup"
+      >
+        Add new task
+      </button>
+      <table *ngIf="filteredTasks" class="table">
+        <thead>
+          <tr class="text-center">
+            <th scope="col" class="w-25 bg-primary-subtle">Task</th>
+            <th scope="col" class="w-25 bg-primary-subtle">To be done by date</th>
+            <th scope="col" class="w-25 bg-primary-subtle">Status</th>
+            <th scope="col" class="w-25 bg-primary-subtle">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let task of filteredTasks" class="text-center">
+            <td>{{ task.title }}</td>
+            <td>
+              {{ task.expiryDate | date }} <i (click)="onEditDateMode(task)" data-bs-toggle="modal" data-bs-target="#editDatePopup" class="bi bi-pencil"></i>
+            </td>
+            <td>
+              Done:
+              <input
+                type="checkbox"
+                [checked]="task.done"
+                (change)="onStatusChange(task)"
+              >
+            </td>
+            <td>
+              <p (click)="deleteTask(task.id!)">
+                <i class="bi bi-trash"></i> Delete
+              </p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </main>
+  </div>
+  <aside class="bg-secondary-subtle p-2 d-flex flex-lg-column flex-row">
+    <div class="d-none d-lg-block p-2" data-bs-toggle="offcanvas" data-bs-target="#sideMenu">
+      <i class="fs-3 bi bi-arrow-right"></i>
+    </div>
+    <div (click)="filterByDoneModeOn()" class="p-2 w-50 w-lg-auto text-center">
+      <i class="fs-3 bi bi-clipboard-check" [class.text-primary]="filterByDoneMode"></i>
+    </div>
+    <div (click)="filterByExpiryDateModeOn()" class="p-2 w-50 w-lg-auto text-center">
+      <i class="fs-3 bi bi-clipboard-x" [class.text-primary]="filterByExpiryDateMode"></i>
+    </div>
+  </aside>
+</div>
+<div class="offcanvas offcanvas-start w-auto bg-secondary-subtle" tabindex="-1" id="sideMenu">
+  <div class="offcanvas-header justify-content-end">
+    <div class="p-2" data-bs-dismiss="offcanvas">
+      <i class=" fs-3 bi bi-arrow-left"></i>
+    </div>
+  </div>
+  <div class="offcanvas-body">
+    <div
+      (click)="filterByDoneModeOn()"
+      class="p-2 text-end"
+      [class.text-primary]="filterByDoneMode"
+      data-bs-dismiss="offcanvas"
+      >
+      Done <i class="fs-3 bi bi-clipboard-check"></i>
+    </div>
+    <div
+      (click)="filterByExpiryDateModeOn()"
+      class="p-2 text-end"
+      [class.text-primary]="filterByExpiryDateMode"
+      data-bs-dismiss="offcanvas"
+    >
+      Expired <i class="fs-3 bi bi-clipboard-x"></i>
+    </div>
+  </div>
+</div>
+<app-edit-date-popup
+  [editedTask]="editedTask"
+  (editDate)="onDateChange($event)"
+></app-edit-date-popup>
+<app-add-task-popup (addNewTask)="addTask($event)"></app-add-task-popup>

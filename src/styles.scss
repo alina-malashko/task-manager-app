@@ -1,0 +1,84 @@
+/* Importing Bootstrap SCSS file. */
+@import "bootstrap/scss/bootstrap";
+
+@font-face {
+  font-family: "Museo Cyrl";
+  src: url("https://db.onlinewebfonts.com/t/0d14f14ef7089ae17ef0d807d3967ff4.eot");
+  src: url("https://db.onlinewebfonts.com/t/0d14f14ef7089ae17ef0d807d3967ff4.eot?#iefix")
+      format("embedded-opentype"),
+    url("https://db.onlinewebfonts.com/t/0d14f14ef7089ae17ef0d807d3967ff4.woff2")
+      format("woff2"),
+    url("https://db.onlinewebfonts.com/t/0d14f14ef7089ae17ef0d807d3967ff4.woff")
+      format("woff"),
+    url("https://db.onlinewebfonts.com/t/0d14f14ef7089ae17ef0d807d3967ff4.ttf")
+      format("truetype"),
+    url("https://db.onlinewebfonts.com/t/0d14f14ef7089ae17ef0d807d3967ff4.svg#Museo Cyrl 500")
+      format("svg");
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
+}
+
+li {
+  list-style: none;
+}
+
+a,
+a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: inherit;
+  font-size: inherit;
+}
+
+img {
+  vertical-align: top;
+}
+
+body {
+  font-family: "Museo Cyrl";
+}
+
+html,
+body {
+  height: 100%;
+}
+
+html {
+  font-size: 100%;
+}
+
+a {
+  outline: none;
+}
+
+input[type="text"]::-ms-clear {
+  display: none;
+}
+
+[tabindex]:focus {
+  outline: none;
+}
+
+#root {
+  position: relative;
+  overflow: auto;
+  min-height: 100%;
+}
